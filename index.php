@@ -93,6 +93,72 @@ if (isset($_POST['login'])){
 
     }
 }?>
+
+<!-- REGISTARTION SYSTEM -->
+
+<?php
+include_once ('control.php');
+require('connection/db.php');
+
+if(isset($_POST['reg'])) {
+
+
+    $Login_Id_= strip_tags($_POST['Login_Id']);
+    $Login_Username_= strip_tags($_POST['Login_Username']);
+    $Login_Password_= strip_tags($_POST['Login_Password']);
+    //$login_rank_= strip_tags($_POST['login_rank']);
+//$Login_Username_= strip_tags($_POST['Login_Username']);
+
+
+    $Login_Id= $con->real_escape_string($Login_Id_ );
+    $Login_Username= $con->real_escape_string($Login_Username_ );
+    $Login_Password= $con->real_escape_string($Login_Password_);
+    //$login_rank= $con->real_escape_string($login_rank_ );
+//$Login_Username= $con->real_escape_string($Login_Username_);
+    $enc= md5($Login_Password);
+//$hashed_password = password_hash($upass, PASSWORD_DEFAULT); // this function works only in PHP 5.5 or latest version
+
+    $check_ = $con->query("SELECT Login_Username FROM Login WHERE Login_Username='$Login_Username'");
+    $count=$check_->num_rows;
+
+    if ($count==0) {
+
+        $query = "INSERT INTO Login(Login_Id,Login_Username,Login_Password,Login_Rank) VALUES('$Login_Id','$Login_Username','$enc','2')";
+
+//inserting in login table
+//$query .= "INSERT INTO Login_table(Login_Username,login_rank,Login_Password,login_status) VALUES('$uname','$rank','$enc','Inactive')";
+
+        if ($con->query($query)) {
+            $msg = "<div class='alert alert-success'>
+    <span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
+</div>";
+            ?>
+
+            <p align="center">
+                <meta content="2;index.php?login" http-equiv="refresh" />
+            </p>
+
+            <?php
+
+        }else {
+            $msg = "<div class='alert alert-danger'>
+    <span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
+</div>";
+        }
+
+    } else {
+
+
+        $msg = "<div class='alert alert-danger'>
+    <span class='glyphicon glyphicon-info-sign'></span> &nbsp; sorry username already taken !
+</div>";
+
+    }
+
+    $con->close();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -133,10 +199,10 @@ if (isset($_POST['login'])){
             <form method="POST">
               <h1>Get Started</h1>
               <div>
-                <input type="text" name="Login_Username" class="form-control" placeholder="Username" required="" />
+                <input type="text" name="Login_Username" class="form-control" placeholder="Username" required="" >
               </div>
               <div>
-                <input type="password" class="form-control" name="Login_Password" placeholder="Password" required="" />
+                <input type="password" class="form-control" name="Login_Password" placeholder="Password" required="" >
               </div>
               <div>
                 <button type="submit" class="btn btn-default" name="login">Login</button>
@@ -164,19 +230,25 @@ if (isset($_POST['login'])){
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+              <?php
+              if (isset($msg)) {
+                  echo $msg;
+              }
+              ?>
+            <form method="POST">
+
               <h1>Create Account</h1>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Login_Id" placeholder="Your ID" required="" >
+                </div>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" name="Login_Username" placeholder="Username" required="" >
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="password" class="form-control" placeholder="Password" name="Login_Password" required="" >
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="admin/index.php">Submit</a>
+                <button class="btn btn-default" name="reg" type="submit">Register</button>
               </div>
 
               <div class="clearfix"></div>

@@ -102,16 +102,6 @@ while($res = mysqli_fetch_array($result1))
                 </ul>
               </div>
                 <div class="menu_section">
-                    <h3>REPORTS</h3>
-                    <ul class="nav side-menu">
-                        <li><a><i class="fa fa-file-pdf-o"></i>View Reports <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="menu_section">
                     <h3>TAGS</h3>
                     <ul class="nav side-menu">
                         <li><a><i class="fa fa-question-circle"></i> Help</a>
@@ -167,7 +157,7 @@ while($res = mysqli_fetch_array($result1))
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="../index.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../logout.php?logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

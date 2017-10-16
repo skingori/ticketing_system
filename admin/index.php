@@ -1,3 +1,44 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: king
+ * Date: 10/10/2017
+ * Time: 10:44
+ */
+
+session_start();
+// Check, if user is already login, then jump to secured page
+if (isset($_SESSION['logname']) && ($_SESSION['rank'])) {
+    switch($_SESSION['rank']) {
+
+        case 2:
+            header('location:../user/index.php');//redirect to  page
+            break;
+
+    }
+}elseif(!isset($_SESSION['logname']) && !isset($_SESSION['rank'])) {
+    header('Location:../sessions.php');
+}
+else
+{
+
+    header('Location:index.php');
+}
+
+include '../connection/db.php';
+$username=$_SESSION['logname'];
+
+$result1 = mysqli_query($con, "SELECT * FROM Login WHERE Login_Username='$username'");
+
+while($res = mysqli_fetch_array($result1))
+{
+    $username= $res['Login_Username'];
+    $id= $res['Login_Id'];
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -126,7 +167,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="../index.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../logout.php?logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
