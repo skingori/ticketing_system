@@ -54,9 +54,13 @@ if (isset($_POST['login'])){
         $_SESSION['logname'] = $row['Login_Username'];
         $_SESSION['rank'] = $row['Login_Rank'];
 
+        //below will be used as a welcome message
+        $username=$_SESSION['logname'];
+
         $msg = "<div class='alert alert-success'>
-                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp;Login Successful !! Welcome
+                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp;Login Successful !! Welcome $username
                     </div>";
+
         ?>
 
         <p align="center">
@@ -94,11 +98,7 @@ if (isset($_POST['login'])){
     }
 }?>
 
-<!-- REGISTARTION SYSTEM -->
-
 <?php
-include_once ('control.php');
-require('connection/db.php');
 
 if(isset($_POST['reg'])) {
 
@@ -123,13 +123,13 @@ if(isset($_POST['reg'])) {
 
     if ($count==0) {
 
-        $query = "INSERT INTO Login(Login_Id,Login_Username,Login_Password,Login_Rank) VALUES('$Login_Id','$Login_Username','$enc','2')";
+        $query = "INSERT INTO Login(Fan_Id,Login_Username,Login_Password,Login_Rank) VALUES('$Login_Id','$Login_Username','$enc','2')";
 
 //inserting in login table
 //$query .= "INSERT INTO Login_table(Login_Username,login_rank,Login_Password,login_status) VALUES('$uname','$rank','$enc','Inactive')";
 
         if ($con->query($query)) {
-            $msg = "<div class='alert alert-success'>
+            $msg1 = "<div class='alert alert-success'>
     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
 </div>";
             ?>
@@ -141,7 +141,7 @@ if(isset($_POST['reg'])) {
             <?php
 
         }else {
-            $msg = "<div class='alert alert-danger'>
+            $msg1 = "<div class='alert alert-danger'>
     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
 </div>";
         }
@@ -149,7 +149,7 @@ if(isset($_POST['reg'])) {
     } else {
 
 
-        $msg = "<div class='alert alert-danger'>
+        $msg1 = "<div class='alert alert-danger'>
     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; sorry username already taken !
 </div>";
 
@@ -231,8 +231,8 @@ if(isset($_POST['reg'])) {
         <div id="register" class="animate form registration_form">
           <section class="login_content">
               <?php
-              if (isset($msg)) {
-                  echo $msg;
+              if (isset($msg1)) {
+                  echo $msg1;
               }
               ?>
             <form method="POST">
