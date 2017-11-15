@@ -26,7 +26,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-ticket"></i> <span>Online Ticketing</span></a>
+              <a href="index.php" class="site_title"><span>Online Ticketing</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -47,51 +47,50 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>FAVOURITES</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home active"></i> Home</a>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i>Get Tickets <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="index.php">Create new</a></li>
-                    </ul>
-                  </li>
+              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                      <h3>FAVOURITES</h3>
+                      <ul class="nav side-menu">
+                          <li><a><i class="fa fa-edit"></i>Get Tickets <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="#">Create new</a></li>
+                              </ul>
+                          </li>
 
-                    <li><a><i class="fa fa-edit"></i>Verify Tickets <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="verify.php">Verify now</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                          <li><a><i class="fa fa-edit"></i>Verify Tickets <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="verify.php">Verify now</a></li>
+                              </ul>
+                          </li>
+                      </ul>
 
+
+                  </div>
+                  <div class="menu_section">
+                      <h3>REPORTS</h3>
+                      <ul class="nav side-menu">
+                          <li><a><i class="fa fa-file-pdf-o"></i>View Reports <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="payments.php">Payments</a></li>
+                                  <li><a href="tickets.php">Tickets</a></li>
+                                  <li><a href="users.php">Registered users</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="menu_section">
+                      <h3>TAGS</h3>
+                      <ul class="nav side-menu">
+                          <li><a><i class="fa fa-question-circle"></i> Help</a>
+                              <ul class="nav child_menu">
+
+                              </ul>
+                          <li><a href="game.php"><i class="fa fa-soccer-ball-o"></i>Next Game<span class="label label-danger pull-right">Complete</span></a></li>
+                          </li>
+                      </ul>
+                  </div>
 
               </div>
-                <div class="menu_section">
-                    <h3>REPORTS</h3>
-                    <ul class="nav side-menu">
-                        <li><a><i class="fa fa-file-pdf-o"></i>View Reports <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="payments.php">Payments</a></li>
-                                <li><a href="tickets.php">Tickets</a></li>
-                                <li><a href="users.php">Registered users</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="menu_section">
-                    <h3>TAGS</h3>
-                    <ul class="nav side-menu">
-                        <li><a><i class="fa fa-question-circle"></i> Help</a>
-                            <ul class="nav child_menu">
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->

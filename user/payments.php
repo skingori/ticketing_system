@@ -60,7 +60,7 @@ if(isset($_POST['search'])) {
 
 ?>
 <div class="box-body">
-    <table class="table table-striped table-hover table-condensed" style="font-family: consolas; font-size: small">
+    <table id="table1" class="table table-striped table-hover table-condensed" style="font-family: consolas; font-size: small">
         <thead class="bg-primary">
         <th>Confirmation Code</th>
         <th>Amount Paid</th>

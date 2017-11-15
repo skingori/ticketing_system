@@ -80,7 +80,7 @@
 
                                 </ul>
                             </li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-soccer-ball-o"></i>Next Game<span class="label label-success pull-right">Coming Soon</span></a></li>
+                            <li><a href="game.php"><i class="fa fa-soccer-ball-o"></i>Next Game<span class="label label-success pull-right">Coming Soon</span></a></li>
                         </ul>
                     </div>
 
@@ -162,10 +162,13 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3></h3>
-                    </div>
+                        <h3>
 
-                    <!--<div class="title_right">
+                                <button class="btn btn-default" onclick="printData()" name="btnPrint" id="btnPrint"><i class="fa fa-file-pdf-o"></i></button>
+                                <button class="btn btn-default" onclick="printData()"><i class="fa fa-print"></i></button>
+                        </h3>
+                    </div>
+                    <div class="title_right">
                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                          <div class="input-group">
                            <input type="text" class="form-control" placeholder="Search for...">
@@ -174,7 +177,8 @@
                            </span>
                          </div>
                        </div>
-                     </div>-->
+                     </div>
+
                 </div>
 
                 <div class="clearfix"></div>

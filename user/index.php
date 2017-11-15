@@ -202,7 +202,7 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
 
                               </ul>
                           </li>
-                          <li><a href="javascript:void(0)"><i class="fa fa-soccer-ball-o"></i>Next Game<span class="label label-success pull-right">Coming Soon</span></a></li>
+                          <li><a href="game.php"><i class="fa fa-soccer-ball-o"></i>Next Game<span class="label label-success pull-right">Coming Soon</span></a></li>
                       </ul>
                   </div>
 
@@ -323,19 +323,23 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
                               <label for="Ticket_Count">Ticket Count:</label>
                               <select type="" name="Ticket_Count" class="form-control">
                                   <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
                               </select>
                           </div>
 
                           <div class="form-group">
                               <label for="Ticket_Type">Ticket Type:</label>
-                              <select name="Ticket_Type" id="Ticket_Type" class="form-control">
+                              <select name="Ticket_Type" id="Ticket_Type" class="form-control" onchange="check();">
                                   <option value="VIP" class="form-control">VIP</option>
                                   <option value="REGULAR" selected class="form-control">Regular</option>
                               </select>
                           </div>
                           <div class="form-group">
                               <label id="Ticket_Charge">Charges:</label>
-                              <input class="form-control" readonly name="Ticket_Charge" id="Ticket_Charge" value="<?php echo '500';?>">
+                              <input class="form-control" name="Ticket_Charge" id="Ticket_Charge">
                           </div>
                           <div class="form-group">
                               <label id="Ticket_Description">Description:</label>
@@ -403,7 +407,6 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
         <!-- /footer content -->
       </div>
     </div>
-
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -415,9 +418,10 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
     <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
     <!-- My test scripts -->
+
     <script>
+
         function validate() {
             var output = true;
 
@@ -463,6 +467,8 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
             });
         });
     </script>
+
+
 
   </body>
 </html>

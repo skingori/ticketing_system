@@ -38,148 +38,178 @@
     <schema id="32" parent="1" name="test"/>
     <schema id="33" parent="1" name="tevinson"/>
     <table id="34" parent="2" name="Fan"/>
-    <table id="35" parent="2" name="Login"/>
-    <table id="36" parent="2" name="Payment"/>
-    <table id="37" parent="2" name="Ticket"/>
-    <table id="38" parent="2" name="Ticket_Payment"/>
-    <table id="39" parent="2" name="Verification"/>
-    <column id="40" parent="34" name="Fan_Id">
+    <table id="35" parent="2" name="Game"/>
+    <table id="36" parent="2" name="Login"/>
+    <table id="37" parent="2" name="Payment"/>
+    <table id="38" parent="2" name="Ticket"/>
+    <table id="39" parent="2" name="Ticket_Payment"/>
+    <table id="40" parent="2" name="Verification"/>
+    <column id="41" parent="34" name="Fan_Id">
       <Position>1</Position>
-      <DataType>int(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="41" parent="34" name="Fan_Name">
+    <column id="42" parent="34" name="Fan_Name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="42" parent="34" name="Fan_Gender">
+    <column id="43" parent="34" name="Fan_Gender">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="43" parent="34" name="Fan_Age">
+    <column id="44" parent="34" name="Fan_Age">
       <Position>4</Position>
-      <DataType>int(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
     </column>
-    <key id="44" parent="34" name="PRIMARY">
+    <key id="45" parent="34" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Fan_Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="45" parent="35" name="Login_Id">
+    <column id="46" parent="35" name="Game_Id">
       <Position>1</Position>
-      <DataType>int(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="35" name="Game_Type">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="35" name="Game_DateTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="35" name="Game_Status">
+      <Position>4</Position>
+      <DataType>varchar(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="35" name="Game_Description">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="51" parent="35" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Game_Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="52" parent="36" name="Login_Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="46" parent="35" name="Login_Username">
+    <column id="53" parent="36" name="Login_Username">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="47" parent="35" name="Login_Password">
+    <column id="54" parent="36" name="Login_Password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="48" parent="35" name="Login_Rank">
+    <column id="55" parent="36" name="Login_Rank">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="49" parent="35" name="PRIMARY">
+    <key id="56" parent="36" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Login_Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="50" parent="36" name="Payment_Id">
+    <column id="57" parent="37" name="Payment_Id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="36" name="Payment_Amount">
+    <column id="58" parent="37" name="Payment_Amount">
       <Position>2</Position>
       <DataType>int(255)|0</DataType>
     </column>
-    <column id="52" parent="36" name="Payment_Mode">
+    <column id="59" parent="37" name="Payment_Mode">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="53" parent="36" name="Payment_Date">
+    <column id="60" parent="37" name="Payment_Date">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <key id="54" parent="36" name="PRIMARY">
+    <key id="61" parent="37" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Payment_Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="55" parent="37" name="Ticket_Id">
+    <column id="62" parent="38" name="Ticket_Id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="56" parent="37" name="Ticket_Count">
+    <column id="63" parent="38" name="Ticket_Count">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="57" parent="37" name="Ticket_Code">
+    <column id="64" parent="38" name="Ticket_Code">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="37" name="Ticket_Charge">
+    <column id="65" parent="38" name="Ticket_Charge">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="59" parent="37" name="Ticket_Type">
+    <column id="66" parent="38" name="Ticket_Type">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="60" parent="37" name="Ticket_Description">
+    <column id="67" parent="38" name="Ticket_Description">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="61" parent="37" name="Ticket_Date">
+    <column id="68" parent="38" name="Ticket_Date">
       <Position>7</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <key id="62" parent="37" name="PRIMARY">
+    <key id="69" parent="38" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Ticket_Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="63" parent="38" name="Ticket_Payment_Id">
+    <column id="70" parent="39" name="Ticket_Payment_Id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="64" parent="38" name="Ticket_Payment_Payment_Id">
+    <column id="71" parent="39" name="Ticket_Payment_Payment_Id">
       <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <column id="65" parent="38" name="Ticket_Payment_Ticket_Id">
+    <column id="72" parent="39" name="Ticket_Payment_Ticket_Id">
       <Position>3</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <key id="66" parent="38" name="PRIMARY">
+    <key id="73" parent="39" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Ticket_Payment_Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="67" parent="39" name="Verification_Id">
+    <column id="74" parent="40" name="Verification_Id">
       <Position>1</Position>
       <DataType>int(255)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="68" parent="39" name="Verification_Login_Id">
+    <column id="75" parent="40" name="Verification_Login_Id">
       <Position>2</Position>
       <DataType>int(255)|0</DataType>
     </column>
-    <column id="69" parent="39" name="Verification_Payment_Mode">
+    <column id="76" parent="40" name="Verification_Payment_Mode">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="70" parent="39" name="PRIMARY">
+    <key id="77" parent="40" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Verification_Id</ColNames>
       <Primary>1</Primary>

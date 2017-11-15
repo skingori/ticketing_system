@@ -31,6 +31,17 @@
 
 <!-- My test scripts -->
 <script>
+    function printData()
+    {
+        var divToPrint=document.getElementById("table1");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+</script>
+<script>
     function validate() {
         var output = true;
 

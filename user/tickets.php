@@ -52,7 +52,7 @@ $result = mysqli_query($con, "SELECT * FROM Ticket WHERE Ticket_Code='$id'");
         <h3 class="box-title" style="font-family:Consolas; font-size: small">All my tickets</h3>
     </div>
     <div class="box-body">
-        <table class="table table-striped table-hover table-condensed" style="font-family: consolas; font-size: small">
+        <table class="table table-striped table-hover table-condensed" id="table1" style="font-family: consolas; font-size: small">
             <thead class="bg-primary">
             <th>Ticket Id</th>
             <th>Amount Paid</th>
