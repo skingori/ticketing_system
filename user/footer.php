@@ -42,6 +42,7 @@
 
 </script>
 <script>
+
     function validate() {
         var output = true;
 
@@ -87,6 +88,8 @@
         });
     });
 </script>
+
+
 
 </body>
 </html>

@@ -53,69 +53,6 @@ if ($count==0) {
     null;
 
 }
-//GENERATE TICKET CODE
-
-$chars = array(0,1,2,3,4,5,6,7,8,9);
-$serial = '';
-$max = count($chars)-1;
-for($i=0;$i<15;$i++){
-    $serial .= (!($i % 5) && $i ? '' : '').$chars[rand(0, $max)];
-}
-/**
- * Created by PhpStorm.
- * User: king
- * Date: 17/10/2017
- * Time: 13:03
- */
-
-
-if(count($_POST)>0) {
-
-    $Ticket_Id_=$serial;
-    $Ticket_Count_=$_POST['Ticket_Count'];
-    $Ticket_Charge_=$_POST['Ticket_Charge'];
-    $Ticket_Type_=$_POST['Ticket_Type'];
-    $Ticket_Code_=$id;
-    $Ticket_Description_=$_POST['Ticket_Description'];
-    $Ticket_Date_=$_POST['Ticket_Date'];
-
-
-    $Payment_Id_=$_POST['Payment_Id'];
-    $Payment_Amount_=$_POST['Payment_Amount'];
-    $Payment_Mode_=$_POST['Payment_Mode'];
-
-    $Ticket_Payment_Payment_Id_=$_POST['Payment_Id'];
-    $Ticket_Payment_Ticket_Id_=$serial;
-
-
-    $sql = "INSERT INTO Ticket(Ticket_Id,Ticket_Count ,Ticket_Code,Ticket_Charge,Ticket_Type,Ticket_Description,Ticket_Date )
-VALUES ('$Ticket_Id_', '$Ticket_Count_', '$Ticket_Code_','$Ticket_Charge_', '$Ticket_Type_', '$Ticket_Description_',NOW());";
-    $sql .= "INSERT INTO Payment(Payment_Id, Payment_Amount, Payment_Mode,Payment_Date)
-VALUES ('$Payment_Id_', '$Payment_Amount_', '$Payment_Mode_',NOW());";
-    $sql .= "INSERT INTO Ticket_Payment (Ticket_Payment_Payment_Id, Ticket_Payment_Ticket_Id)
-VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
-
-    if ($con->multi_query($sql) === TRUE) {
-
-        $msg = "<div class='alert alert-success'>
-						<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
-					</div>";
-                        ?>
-
-                        <p align="center">
-                            <meta content="2;index.php?action=home" http-equiv="refresh" />
-                        </p>
-
-                        <?php
-    } else {
-        $msg = "<div class='alert alert-danger'>
-						<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering + $sql!
-					</div>";
-    }
-
-    $con->close();
-
-}
 
 ?>
 <!-- END BIG DATA INSERTION IN SQL -->
@@ -308,86 +245,53 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
 
                       <!--ADD CONTENT HERE ...-->
                       <?php
-                      if (isset($msg)) {
-                          echo $msg;
-                      }
+
+                      include "../connection/db.php";
+                      // Check connection
+
+                      $result = mysqli_query($con, "SELECT * FROM Game WHERE Game_Status='oncoming'");
                       ?>
-                      <ul id="registration-step">
-                          <li id="account" class="highlight">Ticketing</li>
-                          <li id="password">Payments</li>
-                          <li id="general">Final</li>
-                      </ul>
-                      <form name="frmRegistration" id="registration-form" method="post">
-                          <div id="account-field">
-                          <div class="form-group">
-                              <label for="Ticket_Count">Ticket Count:</label>
-                              <select type="" name="Ticket_Count" class="form-control">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                              </select>
-                          </div>
 
-                          <div class="form-group">
-                              <label for="Ticket_Type">Ticket Type:</label>
-                              <select name="Ticket_Type" id="Ticket_Type" class="form-control" onchange="check();">
-                                  <option value="VIP" class="form-control">VIP</option>
-                                  <option value="REGULAR" selected class="form-control">Regular</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label id="Ticket_Charge">Charges:</label>
-                              <input class="form-control" name="Ticket_Charge" id="Ticket_Charge">
-                          </div>
-                          <div class="form-group">
-                              <label id="Ticket_Description">Description:</label>
-                              <textarea cols="5" rows="3" class="form-control" name="Ticket_Description"></textarea>
-                          </div>
-                          </div>
+                      <div class="box-header">
+                          <h3 class="box-title" style="font-family:Consolas; font-size: small">All my tickets</h3>
+                      </div>
+                      <div class="box-body">
+                          <table class="table table-striped table-hover table-condensed" id="table1" boader="1" style="font-family: consolas; font-size: small">
+                              <thead class="bg-primary">
+                              <th>Game ID</th>
+                              <th>Game Info</th>
+                              <th>Date</th>
+                              <th>Description</th>
+                              <th>Ticket</th>
+                              </thead>
+                              <tbody>
 
-                          <div id="password-field" style="display:none;">
+                              <?php
+                              //while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array
+                              while($res = mysqli_fetch_array($result)) {
+                                  echo "<tr class=''>";
+                                  echo "<td class=''>" . $res['Game_Id'] . "</td>";
+                                  echo "<td>" . $res['Game_Type'] . "</td>";
+                                  echo "<td>" . $res['Game_DateTime'] . "</td>";
+                                  //echo "<td>" . $res['Game_Status'] . "</td>";
+                                  echo "<td>" . $res['Game_Description'] . "</td>";
+                                  echo "<td><a href=\"getticket.php?complete=$res[Game_Id]\" onClick=\"return confirm('Are you sure you want to buy ticket?')\" class='btn btn-danger fa fa-get-pocket lg-2'> Get Ticket</a></td>";
 
-                              <div>
-                                  <label>Reference Number:</label>
-                                  <input type="text" name="Payment_Id" id="Payment_Id" class="form-control" placeholder="eg..X33UY3667532">
-                              </div>
-                              <div class="form-group">
-                                  <label>Paid Amount (KSHS):</label>
-                                  <input type="text" class="form-control" name="Payment_Amount">
-                              </div>
-                              <div class="form-group">
-                                  <label>Payment Mode:</label>
-                                 <select class="form-control" name="Payment_Mode">
-                                     <option value="Bank">Bank</option>
-                                     <option value="M-pesa">M-PESA</option>
-                                     <option value="Airtel Money">Airtel Money</option>
-                                     <option value="Other">Other</option>
-                                 </select>
-                              </div>
-                          </div>
 
-                          <div>
-                              <p id="terms" style="display:none;">By assenting electronically, accepting the Solution or using the Solution, you accept all the terms and conditions of this Agreement on behalf of yourself and any entity or individual you represent
-                                  or for whose Device you acquire Solutions from Vendor (collectively “you”). If you do not agree with the terms and conditions of this Agreement,
-                                  do not continue the accepting process and delete or destroy all copies of the Solution in your possession.
-                              </p>
-                              <button class="btn btn-primary" type="button" name="back" id="back" value="Back" style="display:none;">Back</button>
-                              <button class="btn btn-primary" type="button" name="next" id="next" value="Next" >Next</button>
-                              <button class="btn btn-success" type="submit" name="finish" id="finish" value="Finish" style="display:none;">Finish</button>
-                          </div>
-                      </form>
-                      <style>
-                          #registration-step{margin:0;padding:0;}
-                          #registration-step li{list-style:none; float:left;padding:5px 10px;border-top:#EEE 1px solid;border-left:#EEE 1px solid;border-right:#EEE 1px solid;}
-                          #registration-step li.highlight{background-color:#EEE;}
-                          #registration-form{clear:both;border:1px #EEE solid;padding:20px;}
-                          .demoInputBox{padding: 10px;border: #F0F0F0 1px solid;border-radius: 4px;background-color: #FFF;width: 50%;}
-                          .registration-error{color:#FF0000; padding-left:15px;}
-                          .message {color: #00FF00;font-weight: bold;width: 100%;padding: 10px;}
-                          .btnAction{padding: 5px 10px;background-color: #09F;border: 0;color: #FFF;cursor: pointer; margin-top:15px;}
-                      </style>
+
+                              }
+                              ?>
+                              </tbody>
+                              <tfoot class="bg-info">
+                              <th>Game ID</th>
+                              <th>Game Info</th>
+                              <th>Date</th>
+                              <th>Description</th>
+                              <th>Ticket</th>
+
+                              </tfoot>
+                          </table>
+                      </div>
                       <!-- ADD CONTENT HERE -->
                   </div>
                 </div>
@@ -419,55 +323,6 @@ VALUES ('$Payment_Id_', '$Ticket_Payment_Ticket_Id_')";
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
     <!-- My test scripts -->
-
-    <script>
-
-        function validate() {
-            var output = true;
-
-            return output;
-        }
-        $(document).ready(function() {
-            $("#next").click(function(){
-                var output = validate();
-                if(output) {
-                    var current = $(".highlight");
-                    var next = $(".highlight").next("li");
-                    if(next.length>0) {
-                        $("#"+current.attr("id")+"-field").hide();
-                        $("#"+next.attr("id")+"-field").show();
-                        $("#back").show();
-                        $("#finish").hide();
-                        $("#terms").hide();
-                        $(".highlight").removeClass("highlight");
-                        next.addClass("highlight");
-                        if($(".highlight").attr("id") == $("li").last().attr("id")) {
-                            $("#next").hide();
-                            $("#finish").show();
-                            $("#terms").show();
-                        }
-                    }
-                }
-            });
-            $("#back").click(function(){
-                var current = $(".highlight");
-                var prev = $(".highlight").prev("li");
-                if(prev.length>0) {
-                    $("#"+current.attr("id")+"-field").hide();
-                    $("#"+prev.attr("id")+"-field").show();
-                    $("#next").show();
-                    $("#finish").hide();
-                    $("#terms").hide();
-                    $(".highlight").removeClass("highlight");
-                    prev.addClass("highlight");
-                    if($(".highlight").attr("id") == $("li").first().attr("id")) {
-                        $("#back").hide();
-                    }
-                }
-            });
-        });
-    </script>
-
 
 
   </body>

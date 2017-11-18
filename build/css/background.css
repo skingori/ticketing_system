@@ -1,0 +1,6 @@
+.test {
+    background-image: url("../images/back.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}

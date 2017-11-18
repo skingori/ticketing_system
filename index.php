@@ -123,7 +123,7 @@ if(isset($_POST['reg'])) {
 
     if ($count==0) {
 
-        $query = "INSERT INTO Login(Fan_Id,Login_Username,Login_Password,Login_Rank) VALUES('$Login_Id','$Login_Username','$enc','2')";
+        $query = "INSERT INTO Login(Login_Id,Login_Username,Login_Password,Login_Rank) VALUES('$Login_Id','$Login_Username','$enc','2')";
 
 //inserting in login table
 //$query .= "INSERT INTO Login_table(Login_Username,login_rank,Login_Password,login_status) VALUES('$uname','$rank','$enc','Inactive')";
@@ -169,6 +169,8 @@ if(isset($_POST['reg'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>tarclink :: ticketing</title>
+      <!-- Background -->
+      <link rel="stylesheet" href="build/css/background.css" />
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -181,14 +183,15 @@ if(isset($_POST['reg'])) {
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+
   </head>
 
-  <body class="login">
+  <body id="test" class="test">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
-      <div class="login_wrapper">
+      <div class="login_wrapper" style="color: darkslategrey">
         <div class="animate form login_form">
           <section class="login_content">
               <?php

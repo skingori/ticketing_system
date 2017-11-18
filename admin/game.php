@@ -54,6 +54,9 @@ if(isset($_GET['complete'])) {
 
     header('refresh:2; url=game.php');
 
+}elseif (isset($_GET['complete'])){
+
+    $sql = "DELETE * FROM Ticket";
 }
 
 //include header

@@ -45,44 +45,65 @@ while($res = mysqli_fetch_array($result1))
 include "../connection/db.php";
 // Check connection
 
-$result = mysqli_query($con, "SELECT * FROM Ticket WHERE Ticket_Code='$id'");
+$resultC = mysqli_query($con, "SELECT * FROM Ticket WHERE Ticket_Code='$id'");
+while($resultC = mysqli_fetch_array($resultC))
+{
+    $Ticket_Game_Id_= $resultC['Ticket_Game_Id'];
+
+}
+
+$resultX = mysqli_query($con, "SELECT * FROM Game WHERE Game_Id='$Ticket_Game_Id_'");
+while($resultX = mysqli_fetch_array($resultX))
+{
+    $Game_Type_ = $resultX['Game_Type'];
+    $Game_DateTime_ = $resultX['Game_DateTime'];
+
+}
 ?>
 
     <div class="box-header">
-        <h3 class="box-title" style="font-family:Consolas; font-size: small">All my tickets</h3>
+        <h1 class="box-title" style="font-family:Consolas; font-size: small"><b>TICKET DATE:</b> <?php echo "$Game_DateTime_"; ?></h1>
+        <h3 class="box-title" style="font-family:Consolas; font-size: small"><b>GAME PAID FOR: <?php echo "$Game_Type_"; ?> </b></h3>
     </div>
     <div class="box-body">
-        <table class="table table-striped table-hover table-condensed" id="table1" style="font-family: consolas; font-size: small">
-            <thead class="bg-primary">
+        <table class="table table-striped table-hover table-condensed" width="50%" border="1" id="table1" style="font-family: consolas; font-size: small">
+            <thead class="bg-success">
+            <th style="font-family: 'Britannic Bold';color: green"><b>DATE</b></th>
+            <th style="color: indianred">Game Paid For</th>
+            <th>Seat</th>
             <th>Ticket Id</th>
             <th>Amount Paid</th>
             <th>Ticket Type</th>
             <th>Date Purchased</th>
             <th>Description</th>
-
             </thead>
             <tbody>
 
             <?php
-            //while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array
-            while($res = mysqli_fetch_array($result)) {
-                echo "<tr class=''>";
-                echo "<td class=''>" . $res['Ticket_Id'] . "</td>";
-                echo "<td>" . $res['Ticket_Charge'] . "</td>";
-                echo "<td>" . $res['Ticket_Type'] . "</td>";
-                echo "<td>" . $res['Ticket_Date'] . "</td>";
-                echo "<td>" . $res['Ticket_Description'] . "</td>";
-
+                $result = mysqli_query($con, "SELECT * FROM Ticket WHERE Ticket_Code='$id'");
+                //while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array
+                while ($res = mysqli_fetch_array($result)) {
+                    echo "<tr class=''>";
+                    echo "<td style='color: green' class=''>" . $Game_DateTime_ . "</td>";
+                    echo "<td style='color: indianred' class=''>" . $Game_Type_ . "</td>";
+                    echo "<td class=''>" . $res['Ticket_Seat'] . "</td>";
+                    echo "<td class=''>" . $res['Ticket_Id'] . "</td>";
+                    echo "<td>" . $res['Ticket_Charge'] . "</td>";
+                    echo "<td>" . $res['Ticket_Type'] . "</td>";
+                    echo "<td>" . $res['Ticket_Date'] . "</td>";
+                    echo "<td>" . $res['Ticket_Description'] . "</td>";
             }
             ?>
             </tbody>
             <tfoot class="bg-info">
+            <th style="font-family: 'Britannic Bold';color: green"><b>DATE</b></th>
+            <th style="color: indianred">Game Paid For</th>
+            <th>Seat</th>
             <th>Ticket Id</th>
             <th>Amount Paid</th>
             <th>Ticket Type</th>
             <th>Date Purchased</th>
             <th>Description</th>
-
             </tfoot>
         </table>
     </div>

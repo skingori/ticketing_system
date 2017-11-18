@@ -58,6 +58,7 @@ $result = mysqli_query($con, "SELECT * FROM Game WHERE Game_Status='oncoming'");
         <th>Game Info</th>
         <th>Date</th>
         <th>Description</th>
+        <th>Ticket</th>
         </thead>
         <tbody>
 
@@ -70,6 +71,8 @@ $result = mysqli_query($con, "SELECT * FROM Game WHERE Game_Status='oncoming'");
             echo "<td>" . $res['Game_DateTime'] . "</td>";
             //echo "<td>" . $res['Game_Status'] . "</td>";
             echo "<td>" . $res['Game_Description'] . "</td>";
+            echo "<td><a href=\"getticket.php?complete=$res[Game_Id]\" onClick=\"return confirm('Are you sure you want to buy ticket?')\" class='btn btn-danger fa fa-get-pocket lg-2'> Get Ticket</a></td>";
+
 
 
         }
@@ -80,6 +83,7 @@ $result = mysqli_query($con, "SELECT * FROM Game WHERE Game_Status='oncoming'");
         <th>Game Info</th>
         <th>Date</th>
         <th>Description</th>
+        <th>Ticket</th>
 
         </tfoot>
     </table>
